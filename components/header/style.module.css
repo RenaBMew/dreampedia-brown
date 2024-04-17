@@ -1,0 +1,38 @@
+.container {
+  background-color: var(--night);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 5px 10px 5px 20px;
+  margin-bottom: 80px;
+  align-items: center;
+}
+
+.links a {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--pillow);
+  margin: 0 25px;
+  cursor: pointer;
+}
+
+.links a:hover {
+  color: var(--neutral);
+  font-weight: bold;
+  margin: 0 25px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    padding: 5px 5px 5px 5px;
+  }
+  .links a {
+    font-size: 16px;
+    margin: 0 15px;
+  }
+  .container .dreamLogo {
+    width: 10px;
+    height: auto;
+  }
+}

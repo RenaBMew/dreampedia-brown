@@ -24,14 +24,17 @@ export default function Home(props) {
   const [horoscopeData, setHoroscopeData] = useState(null);
   const [error, setError] = useState(null);
 
+  // fetch BE API, pass user sign
   useEffect(() => {
     const fetchHoroscope = async () => {
       try {
         const astroSign = props?.user?.astrologicalsign;
-        const response = await axios.get(
-          `https://cors-anywhere.herokuapp.com/https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=${astroSign}&day=TODAY`
-        );
-        setHoroscopeData(response.data.data.horoscope_data);
+        const response = await fetch(`/api/horoscope?sign=${astroSign}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch horoscope data");
+        }
+        const data = await response.json();
+        setHoroscopeData(data);
       } catch (error) {
         setError(error.message);
       }
@@ -41,6 +44,8 @@ export default function Home(props) {
       fetchHoroscope();
     }
   }, [props.isLoggedIn, props.user]);
+
+  //https://cors-anywhere.herokuapp.com/
 
   return (
     <main>
@@ -97,7 +102,14 @@ export default function Home(props) {
               <hr></hr>
               <br />
               <div>
-                {error ? <i>Error: {error}</i> : <i>{horoscopeData}</i>}
+                {horoscopeData ? (
+                  <div>
+                    <p>{horoscopeData.data.horoscope_data}</p>
+                  </div>
+                ) : (
+                  <p>Loading...</p>
+                )}
+                {error && <p>Error: {error}</p>}
               </div>
             </div>
           ) : (

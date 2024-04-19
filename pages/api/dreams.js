@@ -5,7 +5,7 @@ import sessionOptions from "../../config/session";
 
 export default withIronSessionApiRoute(async function handler(req, res) {
   const user = req.session.user;
-  console.log("User:", user);
+  // console.log("User:", user);
   if (!user) {
     return res.status(401).json({ message: "User not Found!" });
   }

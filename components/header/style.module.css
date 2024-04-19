@@ -29,7 +29,11 @@
   }
   .links a {
     font-size: 16px;
-    margin: 0 15px;
+    margin: 0 10px;
+  }
+  .links a:hover {
+    font-size: 16px;
+    margin: 0 10px;
   }
   .container .dreamLogo {
     width: 10px;
